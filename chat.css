@@ -1,0 +1,7 @@
+#owui-chat-toggle { /* same styles as above… */ }
+#owui-chat-box { /* … copy the CSS block from the snippet above */ }
+#owui-chat-header { /* … */ }
+#owui-chat-body   { /* … */ }
+#owui-chat-input  { /* … */ }
+.owui-message.user { text-align: right; }
+.owui-message.bot  { text-align: left; }
