@@ -1,4 +1,4 @@
-import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING } from './config.js';
+import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL } from './config.js';
 
 (function(){
   const toggle        = document.getElementById('owui-chat-toggle');
@@ -102,7 +102,7 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING } from './config.js';
 
     try {
       const payload = {
-        model:    'qwen-general4b',
+        model:    LLM_MODEL,
         messages: history,
         session_token: SESSION_TOKEN
       };
