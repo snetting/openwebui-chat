@@ -6,15 +6,8 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL } from './confi
   const body          = document.getElementById('owui-chat-body');
   let   input         = document.getElementById('owui-input');
   const send          = document.getElementById('owui-send');
-//  const API    = "https://dogbox.track3.org.uk:4001/api/chat/completions";
-//  const API_TOKEN = 'sk-7db43b229f614481b413ceba13a1f186';
-//  const SHOW_THINKING = false; // toggle this to true to show the <think> checkbox/UI
-//    const SYSTEM_PROMPT =
-//    "You are an expert in Tarot. Please ask questions to clarify the user's request. " +
-//    "Do not reference any documents or context the user cannot access, and do NOT include any bracketed citations (e.g., [1], [2]) in your responses. " + 
-//    "Keep all responses short and succinct.";
 
- // Replace single-line input with multi-line textarea
+  // Replace single-line input with multi-line textarea
   const chatInputDiv  = document.getElementById('owui-chat-input');
   const originalInput = input;
   const textarea      = document.createElement('textarea');
@@ -79,8 +72,13 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL } from './confi
   function appendMsg(text, sender) {
     const div = document.createElement('div');
     div.className = 'owui-message ' + sender;
-    if (sender === 'user') div.style.color = '#1E90FF';
-    else if (sender === 'bot')  div.style.color = '#228B22';
+    if (sender === 'user') {
+      div.style.color     = '#1E90FF';
+      div.style.textAlign = 'left';
+    } else {
+      div.style.color     = '#228B22';
+      div.style.textAlign = 'right';
+    }
     div.textContent = text;
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
@@ -99,11 +97,12 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL } from './confi
     // Typing indicator
     appendMsg('... thinking ...', 'bot');
     const placeholder = body.lastChild;
+    placeholder.style.whiteSpace = 'pre-wrap';
 
     try {
       const payload = {
-        model:    LLM_MODEL,
-        messages: history,
+        model:         LLM_MODEL,
+        messages:      history,
         session_token: SESSION_TOKEN
       };
 
@@ -124,24 +123,30 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL } from './confi
 
       const data = await res.json();
       let raw = data.choices[0].message.content || '';
-      // Use <think> only if SHOW_THINKING and checked
-      let clean = (SHOW_THINKING && thinkCheckbox.checked)
-        ? raw.trim()
-        : raw.split(/<\/think>/i)[1]?.trim() || raw.trim();
-      clean = clean.replace(/\[\d+\]/g, '').trim();
-      clean = '\n' + clean;
+      let clean;
 
-      placeholder.style.whiteSpace = 'pre-wrap';
-      placeholder.textContent = clean;
+      // Display and compute clean output
+      if (SHOW_THINKING && thinkCheckbox.checked) {
+        // Highlight <think> sections in grey
+        const html = raw.replace(/<think>([\s\S]*?)<\/think>/gi,
+          '<span class="owui-thinking">$1</span>'
+        );
+        placeholder.innerHTML = html;
+        clean = raw.replace(/<\/??think>/gi, '').trim();
+      } else {
+        clean = raw.split(/<\/think>/i)[1]?.trim() || raw.trim();
+        clean = clean.replace(/\[\d+\]/g, '').trim();
+        placeholder.textContent = clean;
+      }
+
+      // Record clean assistant turn
+      history.push({ role: 'assistant', content: clean });
 
       // Spacer after reply
       const spacer = document.createElement('div');
       spacer.style.height = '1em';
       body.appendChild(spacer);
       body.scrollTop = body.scrollHeight;
-
-      // Record assistant turn
-      history.push({ role: 'assistant', content: clean });
     } catch (err) {
       placeholder.textContent = `Error: ${err.message}`;
       console.error(err);

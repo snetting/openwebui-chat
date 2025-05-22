@@ -5,3 +5,7 @@
 #owui-chat-input  { /* … */ }
 .owui-message.user { text-align: right; }
 .owui-message.bot  { text-align: left; }
+.owui-thinking {
+  color: #888 !important;
+  font-style: italic;
+}
