@@ -130,9 +130,8 @@ The plugin's JS and CSS will automatically style and wire up the widget.
 Examples
 --------
 
--   **Amateur Radio Blog including RAG**: https://www.m0spn.co.uk/chat/
--   **Tarot Education Site**:   https://www.learningtarot.net
--   **UAP-focused site**: https://www.nordic-ufo.org
+-   **Amateur Radio Blog (including RAG)**: https://www.m0spn.co.uk/chat/
+-   **UAP-focused site (no RAG)**: https://www.nordic-ufo.org
 
 * * * * *
 
