@@ -57,7 +57,7 @@ add_shortcode('openwebui_chat', function(){
     return <<<HTML
 <button id="owui-chat-toggle">💬</button>
 <div id="owui-chat-box">
-  <div id="owui-chat-header">Chat with us</div>
+  <div id="owui-chat-header">Ask Questions</div>
   <div id="owui-chat-body"></div>
   <div id="owui-chat-input">
     <input type="text" id="owui-input" placeholder="Type a message…" />
