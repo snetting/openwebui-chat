@@ -77,7 +77,7 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL } from './confi
       div.style.textAlign = 'left';
     } else {
       div.style.color     = '#228B22';
-      div.style.textAlign = 'right';
+      div.style.textAlign = 'left';
     }
     div.textContent = text;
     body.appendChild(div);
