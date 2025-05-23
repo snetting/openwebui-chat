@@ -52,6 +52,7 @@ export const SYSTEM_PROMPT =
 
 export const SHOW_THINKING = false;  // set to true to enable the <think> debug UI
 export const LLM_MODEL    = "qwen-general4b";  // model identifier to send in payload
+export const COLLECTION_IS  = ""; // knowledge collection, if used (otherwise leave empty)
 ```
 
 > **Note:** Be sure to exclude `config.js` from public repos or version control if you use real credentials.

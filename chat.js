@@ -1,4 +1,4 @@
-import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL } from './config.js';
+import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL, COLLECTION_ID } from './config.js';
 
 (function(){
   const toggle        = document.getElementById('owui-chat-toggle');
@@ -98,13 +98,26 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL } from './confi
     appendMsg('... thinking ...', 'bot');
     const placeholder = body.lastChild;
     placeholder.style.whiteSpace = 'pre-wrap';
+   
+    // 1) Build your filesPayload
+    const filesPayload = [];
+    if (COLLECTION_ID) {
+      filesPayload.push({
+        type: "collection",
+        id:   COLLECTION_ID
+        });
+    }
 
     try {
-      const payload = {
-        model:         LLM_MODEL,
-        messages:      history,
-        session_token: SESSION_TOKEN
-      };
+    // 2) Construct the payload
+    const payload = {
+      model:          LLM_MODEL,
+      messages:       history,
+      session_token:  SESSION_TOKEN,
+      // 3) Conditionally spread in `files` only when you have something
+      ...(filesPayload.length > 0 && { files: filesPayload })
+    };
+
 
       const res = await fetch(API, {
         method: 'POST',
