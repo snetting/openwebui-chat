@@ -51,7 +51,7 @@ export const SYSTEM_PROMPT =
   "Keep all responses short and succinct. ";
 
 export const SHOW_THINKING = false;  // set to true to enable the <think> debug UI
-export const LLM_MODEL    = "qwen3-general0.6b";  // model identifier to send in payload
+export const LLM_MODEL    = "qwen3-general06b";  // model identifier to send in payload
 export const COLLECTION_IS  = ""; // knowledge collection, if used (otherwise empty)
 ```
 
