@@ -9,7 +9,7 @@ Features
 --------
 
 -   **Floating toggle & chat box**: Click the 💬 button to open/close.
--   **Multi-line input**: Automatically replaces the single-line input with a textarea.
+-   **Multi-line input**: Replaced previous single line input with textarea.
 -   **Context-aware**: Sends the first 3,000 characters of page text as context (via `document.body.innerText`).
 -   **Configurable**: All sensitive values (`API`, `API_TOKEN`, `SYSTEM_PROMPT`, `SHOW_THINKING`, `LLM_MODEL`) live in `config.js`.
 -   **Per-chat history**: Retains conversation history for the current session (page load) only.
@@ -28,7 +28,7 @@ Installation
 
     ```bash
     cd wp-content/plugins
-    git clone git@github.com:snetting/Wordpress-OpenWebUI-Plugin.git openwebui-chat
+    git clone git@github.com:snetting/Wordpress-OpenWebUI-Plugin.git
     ```
 
 2.  **Activate** the plugin in the WordPress Admin under **Plugins → Installed Plugins → OpenWebUI Chat Widget**.
