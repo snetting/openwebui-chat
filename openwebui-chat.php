@@ -4,6 +4,7 @@
  * Description: Simple chat widget powered by OpenWebUI.
  * Version: 1.0
  * Author: Steve Netting OH3SPN
+ * Author URI: https://www.oh3spn.fi
  */
 
 if ( ! defined('ABSPATH') ) exit;
