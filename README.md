@@ -38,7 +38,7 @@ Installation
 Configuration (`config.js`)
 ---------------------------
 
-All connection details and prompts are stored in `config.js` at the plugin root. Edit this file to match your backend and preferences. **This repo is private**, so the following example values are provided **for demo purposes only** (uptime and responsiveness cannot be guaranteed):
+All connection details and prompts are stored in `config.js` at the plugin root. Edit this file to match your backend and preferences. The following example values are provided **for demo purposes only** (uptime and responsiveness cannot be guaranteed):
 
 ```js
 // config.js
@@ -47,12 +47,12 @@ export const API_TOKEN = "sk-7db43b229f614481b413ceba13a1f186";
 
 export const SYSTEM_PROMPT =
   "You are an expert in the supplied page content. Please ask questions to clarify the user's request. " +
-  "Do not reference any documents or context the user cannot access, and do NOT include any bracketed citations (e.g., [1], [2]) in your responses. " +
-  "Keep all responses short and succinct.";
+  "Do not reference any documents or context the user cannot access Do NOT include any bracketed citations/sources (e.g., [1], [2]) in your responses. " +
+  "Keep all responses short and succinct. ";
 
 export const SHOW_THINKING = false;  // set to true to enable the <think> debug UI
-export const LLM_MODEL    = "qwen-general4b";  // model identifier to send in payload
-export const COLLECTION_IS  = ""; // knowledge collection, if used (otherwise leave empty)
+export const LLM_MODEL    = "qwen3-general0.6b";  // model identifier to send in payload
+export const COLLECTION_IS  = ""; // knowledge collection, if used (otherwise empty)
 ```
 
 > **Note:** Be sure to exclude `config.js` from public repos or version control if you use real credentials.
