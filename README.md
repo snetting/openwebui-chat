@@ -42,8 +42,8 @@ All connection details and prompts are stored in `config.js` at the plugin root.
 
 ```js
 // config.js
-export const API = "https://dogbox.track3.org.uk:4001/api/chat/completions";
-export const API_TOKEN = "sk-7db43b229f614481b413ceba13a1f186";
+export const API = "https://your-url.com:4000/api/chat/completions";
+export const API_TOKEN = "your-api-key";
 
 export const SYSTEM_PROMPT =
   "You are an expert in the supplied page content. Please ask questions to clarify the user's request. " +
@@ -51,8 +51,8 @@ export const SYSTEM_PROMPT =
   "Keep all responses short and succinct. ";
 
 export const SHOW_THINKING = false;  // set to true to enable the <think> debug UI
-export const LLM_MODEL    = "qwen3-general06b";  // model identifier to send in payload
-export const COLLECTION_ID  = ""; // knowledge collection, if used (otherwise empty)
+export const LLM_MODEL    = "qwen3-general7b";  // model identifier to send in payload
+export const COLLECTION_ID  = ""; // knowledge collection UUID, if used (otherwise empty)
 ```
 
 > **Note:** Be sure to exclude `config.js` from public repos or version control if you use real credentials.
@@ -114,8 +114,8 @@ The plugin's JS and CSS will automatically style and wire up the widget.
     ```html
     <script>
       window.OWUI_Config = {
-        apiUrl:   "https://dogbox.track3.org.uk:4001/api/chat/completions",
-        apiToken: "sk-7db43b229f614481b413ceba13f186"
+        apiUrl:   "https://your-url:4000/api/chat/completions",
+        apiToken: "your-api-key"
       };
     </script>
     ```
