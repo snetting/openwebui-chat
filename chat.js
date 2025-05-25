@@ -1,4 +1,11 @@
-import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL, COLLECTION_ID } from './config.js';
+//import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL, COLLECTION_ID } from './config.js';
+
+const API           = OWUI_Config.apiUrl;
+const API_TOKEN     = OWUI_Config.apiToken;
+const SYSTEM_PROMPT = OWUI_Config.systemPrompt;
+const SHOW_THINKING = OWUI_Config.showThinking;
+const LLM_MODEL     = OWUI_Config.llmModel;
+const COLLECTION_ID = OWUI_Config.collectionId;
 
 (function(){
   const toggle        = document.getElementById('owui-chat-toggle');
@@ -118,6 +125,7 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL, COLLECTION_ID 
       ...(filesPayload.length > 0 && { files: filesPayload })
     };
 
+    //console.log('🛰️ OpenWebUI Payload:', JSON.stringify(payload, null, 2));
 
       const res = await fetch(API, {
         method: 'POST',
