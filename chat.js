@@ -1,4 +1,11 @@
-import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL, COLLECTION_ID } from './config.js';
+//import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL, COLLECTION_ID } from './config.js';
+
+const API           = OWUI_Config.apiUrl;
+const API_TOKEN     = OWUI_Config.apiToken;
+const SYSTEM_PROMPT = OWUI_Config.systemPrompt;
+const SHOW_THINKING = OWUI_Config.showThinking;
+const LLM_MODEL     = OWUI_Config.llmModel;
+const COLLECTION_ID = OWUI_Config.collectionId;
 
 (function(){
   const toggle        = document.getElementById('owui-chat-toggle');
@@ -85,6 +92,19 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL, COLLECTION_ID 
   }
 
   // Send message and handle response
+  // 1) Identify who & where
+  const userId = window.OWUI_Config.wpUserId      // e.g. injected from PHP
+
+  if (!userId) {
+    userId = localStorage.getItem('owui_user_id');
+    if (!userId) {
+      userId = crypto.randomUUID();
+      localStorage.setItem('owui_user_id', userId);
+    }
+  }
+
+  const site   = window.location.host;
+  
   async function sendMessage() {
     const msg = input.value.trim();
     if (!msg) return;
@@ -118,17 +138,23 @@ import { API, API_TOKEN, SYSTEM_PROMPT, SHOW_THINKING, LLM_MODEL, COLLECTION_ID 
       ...(filesPayload.length > 0 && { files: filesPayload })
     };
 
+    //console.log('🛰️ OpenWebUI Payload:', JSON.stringify(payload, null, 2));
 
       const res = await fetch(API, {
         method: 'POST',
         headers: {
           'Content-Type':  'application/json',
-          'Authorization': `Bearer ${API_TOKEN}`
+          'Authorization': `Bearer ${API_TOKEN}`,
+	  'X-User-ID':     userId,
+	  'X-Site-Host':   site
         },
         body: JSON.stringify(payload)
       });
 
       if (res.status === 401) throw new Error('Unauthorized (401): check your API_TOKEN');
+      if (res.status === 429 || res.status === 503) {
+        throw new Error('You’re sending messages too quickly. Please wait a moment and try again.');
+      }
       if (!res.ok) {
         const errText = await res.text();
         throw new Error(`HTTP ${res.status}: ${errText}`);
