@@ -92,6 +92,19 @@ const COLLECTION_ID = OWUI_Config.collectionId;
   }
 
   // Send message and handle response
+  // 1) Identify who & where
+  const userId = window.OWUI_Config.wpUserId      // e.g. injected from PHP
+
+  if (!userId) {
+    userId = localStorage.getItem('owui_user_id');
+    if (!userId) {
+      userId = crypto.randomUUID();
+      localStorage.setItem('owui_user_id', userId);
+    }
+  }
+
+  const site   = window.location.host;
+  
   async function sendMessage() {
     const msg = input.value.trim();
     if (!msg) return;
@@ -131,12 +144,17 @@ const COLLECTION_ID = OWUI_Config.collectionId;
         method: 'POST',
         headers: {
           'Content-Type':  'application/json',
-          'Authorization': `Bearer ${API_TOKEN}`
+          'Authorization': `Bearer ${API_TOKEN}`,
+	  'X-User-ID':     userId,
+	  'X-Site-Host':   site
         },
         body: JSON.stringify(payload)
       });
 
       if (res.status === 401) throw new Error('Unauthorized (401): check your API_TOKEN');
+      if (res.status === 429 || res.status === 503) {
+        throw new Error('You’re sending messages too quickly. Please wait a moment and try again.');
+      }
       if (!res.ok) {
         const errText = await res.text();
         throw new Error(`HTTP ${res.status}: ${errText}`);

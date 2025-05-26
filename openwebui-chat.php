@@ -146,6 +146,7 @@ add_action('wp_enqueue_scripts', function(){
       'showThinking'  => (bool) get_option('owui_show_thinking', false),
       'llmModel'      => sanitize_text_field( get_option('owui_llm_model', '') ),
       'collectionId'  => sanitize_text_field( get_option( 'owui_collection_id', '') ),
+      'wpUserId' => get_current_user_id(),
     );
 
     wp_localize_script( 'owui-chat-script', 'OWUI_Config', $cfg );
