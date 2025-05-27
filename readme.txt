@@ -69,7 +69,7 @@ Paste the following snippet into a Custom HTML widget in **Appearance → Widget
 \== Changelog ==
 = 1.1.0 =
 * Updated “Tested up to” to 6.8.1.  
-* Renamed plugin slug to `openwebui-chat`.  
+* Renamed plugin slug to `wp-openwebui-chat`.  
 * Added `uninstall.php` option-cleanup.  
 * Moved all config into WP Settings UI.  
 * Injected `X-User-ID` & `X-Site-Host` headers for rate-limiting.  
