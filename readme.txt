@@ -1,27 +1,27 @@
-\=== OpenWebUI Chat Widget ===
+=== OpenWebUI Chat Widget ===
 Contributors: snetting
-Tags: chat, ai, llm, openwebui, rag, wordpress
+Tags: chat, ai, llm, openwebui, rag
 Requires at least: 5.0
-Tested up to: 6.5
+Tested up to: 6.8
 Stable tag: 1.1.0
-License: AGPLv3
-License URI: [https://www.gnu.org/licenses/agpl-3.0.html](https://www.gnu.org/licenses/agpl-3.0.html)
-Donate link: [https://www.oh3spn.fi/donate](https://www.oh3spn.fi/donate)
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html 
+Donate link: https://buymeacoffee.com/oh3spn
+
+A lightweight OpenWebUI-powered AI chat via shortcode or widget, with page context, RAG support & per-session history.
 
 \== Description ==
-This plugin adds a floating AI chat widget powered by an OpenWebUI backend to your WordPress site.
+ Simple, customizable chatbot integration for WordPress. Configure your endpoint, token, prompts, model and RAG collection from **Settings → OpenWebUI Chat**, then drop the widget in via shortcode or Custom HTML.
 
-Click the 💬 button to open a chat box anywhere on posts, pages, or widget areas. It can also be embedded on any static site with the provided HTML & JS snippet.
-
-Key features:
-
-* Floating toggle opens and closes the chat panel
-* Multi-line input (textarea)
-* Context-aware: sends first 3,000 chars of page text as RAG context
-* WordPress Settings UI: configure API URL, API Token, System Prompt, Show Thinking, LLM Model & Collection ID
-* Per-session history (resets on page reload)
-* Shortcode: `[openwebui_chat]`
-* Widget snippet: embed a chat snippet in a Custom HTML widget (see the **Usage** section below for the exact code)
+\== Features ==
+* **Floating toggle & chat box** – Click the 💬 button to open/close the chat panel.  
+* **Multi-line input** – Replaces single-line inputs with a `<textarea>` for longer messages.  
+* **Context-aware** – Automatically sends the first 3,000 characters of the page (`document.body.innerText`) as context.  
+* **WordPress Settings UI** – Configure API URL, API Token, System Prompt, Show Thinking flag, LLM Model & Collection ID under **Settings → OpenWebUI Chat**.  
+* **Per-session history** – Conversation history persists only for the current page load.  
+* **Shortcode support** – Use `[openwebui_chat]` to place the widget in posts or pages.  
+* **Widget support** – Drop the provided HTML snippet into any Custom HTML widget area.  
+* **Custom headers** – Adds `X-User-ID` and `X-Site-Host` headers for per-user/site rate-limiting on the backend.  
 
 \== Installation ==
 
@@ -67,13 +67,12 @@ Paste the following snippet into a Custom HTML widget in **Appearance → Widget
 3. screenshot-3.png — The “OpenWebUI Chat” settings screen in WordPress Admin (Settings → OpenWebUI Chat), with all configuration fields.  
 
 \== Changelog ==
-\= 1.1.0 =
-
-* Initial WordPress.org release
-* Added `uninstall.php` cleanup to remove options on uninstall
-* Created `readme.txt` for WP.org directory
-* Implemented WordPress Settings UI for all configuration
-* Added `X-User-ID` and `X-Site-Host` headers for backend rate-limiting
+= 1.1.0 =
+* Updated “Tested up to” to 6.8.1.  
+* Renamed plugin slug to `openwebui-chat`.  
+* Added `uninstall.php` option-cleanup.  
+* Moved all config into WP Settings UI.  
+* Injected `X-User-ID` & `X-Site-Host` headers for rate-limiting.  
 
 \== Upgrade Notice ==
 \= 1.1.0 =
