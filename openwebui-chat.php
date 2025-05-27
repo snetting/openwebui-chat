@@ -2,7 +2,7 @@
 /**
  * Plugin Name: OpenWebUI Chat Widget
  * Description: Simple chat widget powered by OpenWebUI.
- * Version: 1.1
+ * Version: 1.1.0
  * Author: Steve Netting OH3SPN
  * Author URI: https://www.oh3spn.fi
  */

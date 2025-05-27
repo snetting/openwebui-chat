@@ -1,5 +1,5 @@
 # WordPress OpenWebUI Chat Plugin
-## Version 1.1
+## Version 1.1.0
 
 A simple WordPress plugin that embeds a floating chat widget powered by an OpenWebUI backend. Users can chat with your AI model directly from any post, page, widget area or **any static site** (e.g., GitHub Pages, Netlify) by including a small HTML/JS snippet.
 
