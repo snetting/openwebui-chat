@@ -37,7 +37,7 @@ Installation
 
     ```
     cd wp-content/plugins
-    git clone git@github.com:snetting/wp-openwebui-plugin.git
+    git clone git@github.com:snetting/wp-openwebui-chat.git
     ```
 
 2.  **Activate** the plugin in WordPress Admin under **Plugins → Installed Plugins → OpenWebUI Chat Widget**.
