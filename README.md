@@ -94,26 +94,38 @@ Paste:
 
 ### On Any Static Site
 
-1.  **Include HTML** at end of `<body>`.
+1. **Define your global configuration** before loading the chat script (e.g. in your `<head>` or just before `</body>`):
 
-2.  **Define **`**window.OWUI_Config**` before loading scripts:
-
-    ```
+    ```html
     <script>
-      window.OWUI_Config = {
-        apiUrl:        "https://your-server.com:4000/api/chat/completions",
-        apiToken:      "your-api-key",
-        systemPrompt:  "(optional) Your prompt here",
-        showThinking:  false,
-        llmModel:      "qwen-general4b",
-        collectionId:  ""  // optional
-      };
+    window.OWUI_Config = {
+      apiUrl:       "https://your-server.com:4000/api/chat/completions",
+      apiToken:     "your-api-key",
+      systemPrompt: "(optional) Guide the assistant’s behavior and tone",
+      showThinking: false,            // enable `<think>` debug UI if true
+      llmModel:     "qwen-general4b", // model identifier
+      collectionId: ""                // optional RAG collection UUID
+    };
     </script>
     ```
 
-3.  **Include assets**:
+2. **Insert the chat widget markup** wherever you want the toggle button to appear:
 
+    ```html
+    <button id="owui-chat-toggle">💬 Ask questions</button>
+    <div id="owui-chat-box" style="display:none;">
+      <div id="owui-chat-header">Ask questions</div>
+      <div id="owui-chat-body"></div>
+      <div id="owui-chat-input">
+        <input id="owui-input" placeholder="Type a message…" />
+        <button id="owui-send">Send</button>
+      </div>
+    </div>
     ```
+
+3. **Include the CSS and JS assets** (also just before your closing `</body>`):
+
+    ```html
     <link rel="stylesheet" href="/path/to/chat.css">
     <script type="module" src="/path/to/chat.js"></script>
     ```
