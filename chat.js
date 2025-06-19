@@ -170,12 +170,12 @@ const COLLECTION_ID = OWUI_Config.collectionId;
         const html = raw.replace(/<think>([\s\S]*?)<\/think>/gi,
           '<span class="owui-thinking">$1</span>'
         );
-        placeholder.innerHTML = html;
+        placeholder.innerHTML = '<br>' + html;
         clean = raw.replace(/<\/??think>/gi, '').trim();
       } else {
         clean = raw.split(/<\/think>/i)[1]?.trim() || raw.trim();
         clean = clean.replace(/\[\d+\]/g, '').trim();
-        placeholder.textContent = clean;
+        placeholder.textContent = '\n' + clean;
       }
 
       // Record clean assistant turn
